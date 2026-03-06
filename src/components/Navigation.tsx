@@ -16,6 +16,7 @@ const sections = [
   { id: "programme", label: "Programme" },
   { id: "panel", label: "Panel" },
   { id: "pricing", label: "Tiers" },
+  { id: "about", label: "ThreePoint" },
   { id: "next", label: "Next Steps" },
 ];
 

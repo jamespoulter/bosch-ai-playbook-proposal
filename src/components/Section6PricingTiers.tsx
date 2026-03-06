@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 
 const tiers = [
@@ -60,7 +60,7 @@ const tiers = [
 export default function Section6PricingTiers() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const [selectedTier, setSelectedTier] = useState<string>("gold");
+  const [selectedTier, setSelectedTier] = useState<string | null>("gold");
 
   return (
     <section
@@ -105,7 +105,7 @@ export default function Section6PricingTiers() {
               >
                 {tier.recommended && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-gold text-navy text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                    <span className="bg-gold text-navy text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider animate-pulse shadow-lg shadow-gold/30">
                       Recommended
                     </span>
                   </div>
@@ -125,45 +125,34 @@ export default function Section6PricingTiers() {
                   <div className="text-cream/60 text-sm">{tier.duration}</div>
                 </div>
 
-                <AnimatePresence>
-                  {isSelected && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="border-t border-cream/10 pt-6">
-                        <ul className="space-y-3 text-left">
-                          {tier.deliverables.map((item, i) => (
-                            <motion.li
-                              key={i}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.05 }}
-                              className="flex items-start gap-2 text-sm"
-                            >
-                              <svg
-                                className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isGold ? "text-gold" : "text-orange"}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                              </svg>
-                              <span className="text-cream/80">{item}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Deliverables always visible */}
+                <div className="border-t border-cream/10 pt-6">
+                  <ul className="space-y-3 text-left">
+                    {tier.deliverables.map((item, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: 0.3 + index * 0.1 + i * 0.05 }}
+                        className="flex items-start gap-2 text-sm"
+                      >
+                        <svg
+                          className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isGold ? "text-gold" : "text-orange"}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-cream/80">{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
 
                 <div className="mt-6">
                   <div className={`text-xs ${isSelected ? (isGold ? "text-gold" : "text-orange") : "text-cream/50"}`}>
-                    {isSelected ? "Selected" : "Click to view details"}
+                    {isSelected ? "Selected" : "Click to select"}
                   </div>
                 </div>
               </motion.div>

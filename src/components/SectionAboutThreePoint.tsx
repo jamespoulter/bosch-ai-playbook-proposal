@@ -217,12 +217,17 @@ export default function SectionAboutThreePoint() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="border-t border-cream/10 pt-10"
         >
-          <p className="text-cream/40 text-xs tracking-widest uppercase mb-6 text-center">Trusted by</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <p className="text-cream/40 text-xs tracking-widest uppercase mb-8 text-center">Trusted by</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 items-center justify-items-center">
             {clients.map((client) => (
-              <span key={client} className="text-cream/50 font-medium text-sm hover:text-cream/80 transition-colors">
-                {client}
-              </span>
+              <div
+                key={client}
+                className="flex items-center justify-center h-12 px-4 border border-cream/10 rounded-lg bg-navy-light/50 hover:border-cream/30 hover:bg-navy-light transition-all group"
+              >
+                <span className="text-cream/70 font-semibold text-sm uppercase tracking-wide group-hover:text-cream transition-colors whitespace-nowrap">
+                  {client}
+                </span>
+              </div>
             ))}
           </div>
         </motion.div>

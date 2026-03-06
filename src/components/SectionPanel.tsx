@@ -113,9 +113,9 @@ export default function SectionPanel() {
           The Panel
         </h2>
         <p className="text-lg sm:text-xl text-cream/75 font-normal max-w-3xl mx-auto mb-12 sm:mb-16">
-          Led by James Poulter as Convener &amp; Chair, and supported by five globally recognised
-          Voice AI experts — bringing deep industry experience, research credibility, and
-          strategic insight to the programme.
+          Led by James Poulter as Convener, and supported by five globally recognised
+          Voice AI experts from Europe, the US, and APAC — bringing deep industry experience,
+          research credibility, and strategic insight to the programme.
         </p>
 
         {/* 6-column grid: JP first (full-width or featured), then 5 panelists */}
