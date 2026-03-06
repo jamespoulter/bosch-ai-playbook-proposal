@@ -24,10 +24,32 @@ export default function Navigation({ activeSection }: NavigationProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showPdfToast, setShowPdfToast] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
-  const handlePdfDownload = () => {
+  const handlePdfDownload = async () => {
+    if (pdfLoading) return;
+    setPdfLoading(true);
     setShowPdfToast(true);
-    setTimeout(() => setShowPdfToast(false), 3000);
+
+    try {
+      const response = await fetch("/api/download-proposal");
+      if (!response.ok) throw new Error("Failed to generate PDF");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Jabra-Voice-AI-Research-Programme-Proposal.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("PDF download error:", error);
+    } finally {
+      setPdfLoading(false);
+      setTimeout(() => setShowPdfToast(false), 2000);
+    }
   };
 
   useEffect(() => {
@@ -104,13 +126,21 @@ export default function Navigation({ activeSection }: NavigationProps) {
               <div className="hidden md:flex items-center gap-4">
                 <button
                   onClick={handlePdfDownload}
-                  className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm font-medium text-cream/70 hover:text-cream hover:bg-cream/5 rounded-lg transition-all"
+                  disabled={pdfLoading}
+                  className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm font-medium text-cream/70 hover:text-cream hover:bg-cream/5 rounded-lg transition-all disabled:opacity-50 disabled:cursor-wait"
                   title="Download PDF"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>PDF</span>
+                  {pdfLoading ? (
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  )}
+                  <span>{pdfLoading ? "Generating..." : "PDF"}</span>
                 </button>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-cream/60">Prepared for</span>
@@ -211,10 +241,17 @@ export default function Navigation({ activeSection }: NavigationProps) {
             exit={{ opacity: 0, y: 50 }}
             className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] bg-navy-light border border-cream/20 rounded-xl px-6 py-4 shadow-2xl flex items-center gap-3"
           >
-            <svg className="w-5 h-5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="text-cream text-sm">PDF download coming soon</span>
+            {pdfLoading ? (
+              <svg className="w-5 h-5 text-orange animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+            <span className="text-cream text-sm">{pdfLoading ? "Generating PDF..." : "PDF downloaded!"}</span>
           </motion.div>
         )}
       </AnimatePresence>
