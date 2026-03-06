@@ -126,7 +126,7 @@ export default function Section5Programme() {
         className="absolute inset-0 bg-cover bg-center opacity-[0.06]"
         style={{ backgroundImage: "url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80)" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy/90 to-navy" />
+
 
       {/* Header */}
       <motion.div
