@@ -157,7 +157,7 @@ export default function SectionPanel() {
 
                 {/* Photo */}
                 <div className="flex justify-center mb-4">
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden ring-2 ring-cream/20">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-2 ring-cream/20">
                     <Image
                       src={panelist.photo}
                       alt={panelist.name}

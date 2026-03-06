@@ -89,13 +89,13 @@ export default function SectionAboutThreePoint() {
             className="flex flex-col gap-6"
           >
             <div className="flex items-start gap-5">
-              {/* JP photo placeholder — orange initial circle */}
-              <div className="w-20 h-20 rounded-full border-2 border-orange/40 flex-shrink-0 overflow-hidden">
+              {/* JP photo */}
+              <div className="w-32 h-32 rounded-full border-2 border-orange/40 flex-shrink-0 overflow-hidden">
                 <Image
                   src="/panelists/james-poulter.jpg"
                   alt="James Poulter"
-                  width={80}
-                  height={80}
+                  width={128}
+                  height={128}
                   className="object-cover w-full h-full"
                 />
               </div>

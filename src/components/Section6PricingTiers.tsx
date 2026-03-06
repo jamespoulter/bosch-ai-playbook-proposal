@@ -160,6 +160,54 @@ export default function Section6PricingTiers() {
           })}
         </div>
 
+        {/* Comparison Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6 }}
+          className="mt-12 w-full max-w-4xl mx-auto"
+        >
+          <h3 className="text-xl font-bold text-cream mb-6 text-center">Quick Comparison</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left text-cream/70 text-sm font-medium p-4 border-b border-cream/10">Feature</th>
+                  <th className="text-center text-cream/70 text-sm font-medium p-4 border-b border-cream/10">Bronze</th>
+                  <th className="text-center text-cream/70 text-sm font-medium p-4 border-b border-cream/10">Silver</th>
+                  <th className="text-center text-sm font-medium p-4 border-b border-cream/10 bg-orange/10 text-orange rounded-t-lg">Gold</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-cream/80 text-sm p-4 border-b border-cream/10">Duration</td>
+                  <td className="text-cream/60 text-sm p-4 border-b border-cream/10 text-center">3 months</td>
+                  <td className="text-cream/60 text-sm p-4 border-b border-cream/10 text-center">12 months</td>
+                  <td className="text-cream text-sm p-4 border-b border-cream/10 text-center bg-orange/5 font-medium">12 months</td>
+                </tr>
+                <tr>
+                  <td className="text-cream/80 text-sm p-4 border-b border-cream/10">Markets</td>
+                  <td className="text-cream/40 text-sm p-4 border-b border-cream/10 text-center">—</td>
+                  <td className="text-cream/60 text-sm p-4 border-b border-cream/10 text-center">2 markets</td>
+                  <td className="text-cream text-sm p-4 border-b border-cream/10 text-center bg-orange/5 font-medium">5 markets</td>
+                </tr>
+                <tr>
+                  <td className="text-cream/80 text-sm p-4 border-b border-cream/10">Workshops</td>
+                  <td className="text-cream/40 text-sm p-4 border-b border-cream/10 text-center">—</td>
+                  <td className="text-cream/60 text-sm p-4 border-b border-cream/10 text-center">Copenhagen</td>
+                  <td className="text-cream text-sm p-4 border-b border-cream/10 text-center bg-orange/5 font-medium">Copenhagen + New York</td>
+                </tr>
+                <tr>
+                  <td className="text-cream/80 text-sm p-4">Reports</td>
+                  <td className="text-cream/60 text-sm p-4 text-center">1 baseline</td>
+                  <td className="text-cream/60 text-sm p-4 text-center">1 interim</td>
+                  <td className="text-cream text-sm p-4 text-center bg-orange/5 rounded-b-lg font-medium">Annual + 3 updates</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+
         {/* Forward CTA */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}

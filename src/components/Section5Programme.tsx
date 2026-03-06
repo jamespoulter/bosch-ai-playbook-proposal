@@ -10,7 +10,7 @@ const phases = [
     name: "Foundation",
     timeline: "Months 1–3",
     color: "gold",
-    icon: "🏗️",
+    icon: "foundation",
     deliverables: [
       "Expert panel assembly: recruit and onboard 5 global voice AI specialists",
       "Baseline landscape report: current state of Voice AI in enterprise — market sizing, competitor mapping, emerging technology audit",
@@ -25,7 +25,7 @@ const phases = [
     name: "Insight",
     timeline: "Months 4–9",
     color: "orange",
-    icon: "🔍",
+    icon: "insight",
     deliverables: [
       "Quarterly tracker study launch: Wave 1 + Wave 2 across 5 markets (UK, US, DACH, Nordics, APAC) via Delineate",
       "Copenhagen Workshop (May 2026): 2-day facilitated expert session at Jabra HQ; outputs — strategic recommendations, product feedback, market positioning insights",
@@ -40,7 +40,7 @@ const phases = [
     name: "Leadership",
     timeline: "Months 10–12",
     color: "lime",
-    icon: "🚀",
+    icon: "leadership",
     deliverables: [
       "Wave 3 + Wave 4 tracker study: completing annual cycle across all 5 markets",
       "Annual major study: full publication-ready research report, designed for external release and PR amplification",
@@ -52,6 +52,27 @@ const phases = [
     ],
   },
 ];
+
+function PhaseIcon({ type, className }: { type: string; className?: string }) {
+  const icons: Record<string, JSX.Element> = {
+    foundation: (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" />
+      </svg>
+    ),
+    insight: (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+    ),
+    leadership: (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+      </svg>
+    ),
+  };
+  return icons[type] || null;
+}
 
 const colorClasses: Record<string, { bg: string; text: string; border: string; node: string; glow: string }> = {
   gold: { bg: "bg-gold/10", text: "text-gold", border: "border-gold/40", node: "bg-gold", glow: "shadow-gold/30" },
@@ -121,7 +142,7 @@ export default function Section5Programme() {
       {/* Timeline */}
       <div className="w-full max-w-5xl relative">
         {/* Vertical spine - hidden on mobile */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#f46c42]/30 -translate-x-1/2" />
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-orange/30 -translate-x-1/2" />
 
         {/* Phases */}
         {phases.map((phase, index) => {
@@ -146,7 +167,9 @@ export default function Section5Programme() {
                 {/* Phase label side */}
                 <div className={`${isLeft ? "md:text-right md:pr-12" : "md:col-start-2 md:pl-12"} mb-4 md:mb-0`}>
                   <div className={`inline-flex items-center gap-3 ${isLeft ? "md:flex-row-reverse" : ""}`}>
-                    <span className="text-3xl">{phase.icon}</span>
+                    <div className={`w-10 h-10 rounded-xl ${colors.bg} flex items-center justify-center`}>
+                      <PhaseIcon type={phase.icon} className={`w-5 h-5 ${colors.text}`} />
+                    </div>
                     <div className={isLeft ? "md:text-right" : ""}>
                       <h3 className={`text-xl sm:text-2xl font-bold ${colors.text}`}>
                         Phase {phase.id}: {phase.name}
@@ -158,7 +181,7 @@ export default function Section5Programme() {
 
                 {/* Deliverables side */}
                 <div className={`${isLeft ? "md:col-start-2 md:pl-12" : "md:row-start-1 md:pr-12 md:text-right"}`}>
-                  <div className={`bg-[#0f171f] rounded-2xl p-5 sm:p-6 border ${colors.border}`}>
+                  <div className={`bg-navy-light rounded-2xl p-5 sm:p-6 border ${colors.border}`}>
                     <ul className="space-y-3">
                       {phase.deliverables.map((deliverable, dIndex) => (
                         <motion.li

@@ -51,12 +51,12 @@ export default function Section7NextSteps() {
           </p>
         </motion.div>
 
-        {/* CTA Button */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16"
+          className="mb-16 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
             href="mailto:jp@threepoint.io?subject=Jabra%20Voice%20AI%20Research%20Programme"
@@ -71,6 +71,17 @@ export default function Section7NextSteps() {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
+          </motion.a>
+          <motion.a
+            href="mailto:jemma@poulterventures.com?subject=Jabra%20Voice%20AI%20Programme%20%E2%80%94%20Meeting%20Request&body=Hi%20Jemma%2C%0A%0AI%27d%20like%20to%20schedule%20a%20call%20to%20discuss%20the%20ThreePoint%20Voice%20AI%20Research%20Programme%20for%20Jabra.%0A%0AAvailable%20times%3A%0A%0AName%3A%0ACompany%3A"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-3 bg-transparent border-2 border-cream/30 hover:border-cream/50 text-cream font-bold text-lg px-10 py-5 rounded-xl transition-all hover:bg-cream/5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cream/30"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span>Schedule a Call</span>
           </motion.a>
         </motion.div>
 
