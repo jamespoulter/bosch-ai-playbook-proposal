@@ -122,20 +122,14 @@ export default function SectionAboutThreePoint() {
             </p>
 
             <p className="text-cream/70 leading-relaxed">
-              He currently serves as Fractional Head of AI at{" "}
+              James currently serves as Fractional Head of AI at{" "}
               <span className="text-cream font-medium">Elvis London</span> and{" "}
-              <span className="text-cream font-medium">Dunham &amp; Company (Dallas)</span>, sits on
-              the board of <span className="text-cream font-medium">Christian Aid</span>, and
-              advises the <span className="text-cream font-medium">Church of England&apos;s digital board</span>{" "}
-              on AI ethics. His book,{" "}
-              <span className="text-lime italic">AI @ Work: Rewire Your Team and Yourself for the AI Revolution</span>,
-              publishes with Bloomsbury in August 2026.
-            </p>
-
-            <p className="text-cream/70 leading-relaxed">
-              As Programme Convener, James will chair all panel sessions, shape the research
-              agenda, facilitate the Copenhagen and New York workshops, and serve as the
-              strategic lead throughout the engagement.
+              <span className="text-cream font-medium">Dunham &amp; Company</span>, advises the{" "}
+              <span className="text-cream font-medium">Church of England&apos;s digital board</span> on AI ethics,
+              and sits on the board of <span className="text-cream font-medium">Christian Aid</span>.
+              His book <span className="text-lime italic">AI @ Work</span> publishes with Bloomsbury in August 2026.
+              As Programme Convener, he will chair all panel sessions, shape the research agenda,
+              and lead the Copenhagen and New York workshops.
             </p>
           </motion.div>
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Section1Welcome from "@/components/Section1Welcome";
@@ -31,6 +31,7 @@ export default function ProposalPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("welcome");
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -61,11 +62,18 @@ export default function ProposalPage() {
           break;
         }
       }
+
+      // Show back-to-top button after scrolling 500px
+      setShowBackToTop(window.scrollY > 500);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isAuthenticated]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (isLoading) {
     return (
@@ -89,7 +97,7 @@ export default function ProposalPage() {
       <Navigation activeSection={activeSection} />
 
       {/* Side Navigation dots */}
-      <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-3">
+      <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
         {sections.map((section) => (
           <a
             key={section.id}
@@ -175,6 +183,24 @@ export default function ProposalPage() {
           </div>
         </div>
       </footer>
+
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-orange hover:bg-orange/90 rounded-full flex items-center justify-center shadow-lg shadow-orange/25 hover:shadow-xl hover:shadow-orange/30 transition-all"
+            aria-label="Back to top"
+          >
+            <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

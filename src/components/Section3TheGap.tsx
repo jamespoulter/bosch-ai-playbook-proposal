@@ -54,7 +54,7 @@ export default function Section3TheGap() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-3 h-3 bg-cream/40 rounded-full" />
-              <h3 className="text-2xl font-bold text-cream/60">Where Jabra is today</h3>
+              <h3 className="text-2xl font-bold text-cream/80">Where Jabra is today</h3>
             </div>
             <ul className="space-y-4">
               {beforeItems.map((item, index) => (
