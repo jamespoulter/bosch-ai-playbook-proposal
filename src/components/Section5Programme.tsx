@@ -237,7 +237,7 @@ export default function Section5Programme() {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-lime">Delineate</h4>
-                <p className="text-cream/50 text-sm">Primary quantitative research partner</p>
+                <p className="text-cream/60 text-sm">Primary quantitative research partner</p>
               </div>
             </div>
             <p className="text-cream/70 text-sm leading-relaxed">
@@ -260,14 +260,14 @@ export default function Section5Programme() {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-orange">ThreePoint Labs</h4>
-                <p className="text-cream/50 text-sm">Programme Director</p>
+                <p className="text-cream/60 text-sm">Programme Director</p>
               </div>
             </div>
             <p className="text-cream/70 text-sm leading-relaxed mb-2">
               James Poulter (jp@threepoint.io) leads the programme. AI transformation consultancy
               with deep enterprise AI expertise.
             </p>
-            <p className="text-cream/50 text-xs">
+            <p className="text-cream/60 text-xs">
               Trusted by Amazon, Verizon, Bosch, Bloomsbury, Universal Music, LEGO.
             </p>
           </div>

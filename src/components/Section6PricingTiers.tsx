@@ -115,14 +115,14 @@ export default function Section6PricingTiers() {
                   <h3 className={`text-2xl font-bold ${isGold && isSelected ? "text-gold" : "text-cream"}`}>
                     {tier.name}
                   </h3>
-                  <p className="text-cream/50 text-sm">{tier.subtitle}</p>
+                  <p className="text-cream/60 text-sm">{tier.subtitle}</p>
                 </div>
 
                 <div className="mb-6">
                   <div className={`text-4xl font-bold ${isGold && isSelected ? "text-gold" : "text-orange"}`}>
                     {tier.price}
                   </div>
-                  <div className="text-cream/50 text-sm">{tier.duration}</div>
+                  <div className="text-cream/60 text-sm">{tier.duration}</div>
                 </div>
 
                 <AnimatePresence>
@@ -162,7 +162,7 @@ export default function Section6PricingTiers() {
                 </AnimatePresence>
 
                 <div className="mt-6">
-                  <div className={`text-xs ${isSelected ? (isGold ? "text-gold" : "text-orange") : "text-cream/40"}`}>
+                  <div className={`text-xs ${isSelected ? (isGold ? "text-gold" : "text-orange") : "text-cream/50"}`}>
                     {isSelected ? "Selected" : "Click to view details"}
                   </div>
                 </div>
@@ -180,21 +180,21 @@ export default function Section6PricingTiers() {
         >
           <a
             href="#next"
-            className="inline-flex items-center gap-2 bg-orange hover:bg-orange/90 text-navy font-bold px-8 py-4 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/50 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-light"
+            className="inline-flex items-center gap-2 bg-orange hover:bg-orange/90 text-navy font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-orange/20 hover:shadow-orange/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/50"
           >
             Discuss this programme
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <span className="text-cream/40 text-sm">or scroll to see next steps</span>
+          <span className="text-cream/60 text-sm">or scroll to see next steps</span>
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
-          className="text-cream/40 text-sm mt-8"
+          className="text-cream/60 text-sm mt-8"
         >
           All prices exclude VAT. Custom packages available on request.
         </motion.p>

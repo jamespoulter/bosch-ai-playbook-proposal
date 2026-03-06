@@ -117,7 +117,7 @@ export default function Section2MarketMoment() {
                 />
               </div>
               <div className="text-cream font-semibold text-lg mb-1">{stat.label}</div>
-              <div className="text-cream/50 text-sm">{stat.subtext}</div>
+              <div className="text-cream/60 text-sm">{stat.subtext}</div>
             </motion.div>
           ))}
         </div>
@@ -126,7 +126,7 @@ export default function Section2MarketMoment() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-cream/40 text-sm mt-12 max-w-2xl mx-auto"
+          className="text-cream/50 text-sm mt-12 max-w-2xl mx-auto"
         >
           Source: MarketsandMarkets Voice AI Research 2025
         </motion.p>

@@ -6,10 +6,10 @@ export default function Section1Welcome() {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-6 pt-24 md:pt-20">
       {/* Geometric accent shapes */}
-      <div className="absolute top-20 right-20 w-72 h-72 border border-orange/20 rounded-full animate-pulse" />
-      <div className="absolute bottom-32 left-16 w-48 h-48 border border-lime/20 rotate-45" />
-      <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-orange rounded-full" />
-      <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-lime rounded-full" />
+      <div className="absolute top-20 right-20 w-72 h-72 border border-orange/20 rounded-full animate-pulse hidden sm:block" />
+      <div className="absolute bottom-32 left-16 w-48 h-48 border border-lime/20 rotate-45 hidden sm:block" />
+      <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-orange rounded-full hidden sm:block" />
+      <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-lime rounded-full hidden sm:block" />
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -30,7 +30,7 @@ export default function Section1Welcome() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cream mb-6"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-cream mb-6 leading-[1.05]"
         >
           Voice AI
           <motion.span
@@ -47,7 +47,7 @@ export default function Section1Welcome() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-xl md:text-2xl text-cream/75 font-normal mb-12"
+          className="text-xl md:text-2xl text-cream/80 font-normal mb-12"
         >
           A strategic research initiative to position Jabra
           <br className="hidden md:block" /> as the authority on Voice AI in the workplace
@@ -59,7 +59,7 @@ export default function Section1Welcome() {
           transition={{ delay: 1 }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-cream/40 text-sm uppercase tracking-wider">Prepared for Jabra by</span>
+          <span className="text-cream/60 text-sm uppercase tracking-wider">Prepared for Jabra by</span>
           <span className="text-orange text-lg font-semibold">James Poulter / ThreePoint</span>
         </motion.div>
       </motion.div>
@@ -71,7 +71,7 @@ export default function Section1Welcome() {
         transition={{ delay: 1.5 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-cream/40 text-xs uppercase tracking-wider">Scroll to explore</span>
+        <span className="text-cream/60 text-xs uppercase tracking-wider">Scroll to explore</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}

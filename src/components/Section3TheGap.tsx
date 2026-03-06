@@ -65,7 +65,7 @@ export default function Section3TheGap() {
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   className="flex items-start gap-3 text-left"
                 >
-                  <span className="text-cream/30 mt-1">—</span>
+                  <span className="text-cream/50 mt-1">—</span>
                   <span className="text-cream/60">{item}</span>
                 </motion.li>
               ))}

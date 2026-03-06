@@ -4,6 +4,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
 
+/*
+ * Panelist photos: All 5 panelists now have real photos
+ */
 const panelists = [
   {
     name: "Romina Pankoke",
@@ -13,7 +16,7 @@ const panelists = [
     company: "Vixen Labs / House 337",
     bio: "One of Europe's leading conversational AI and voice UX designers. Founder of Women in Voice Germany chapter. Certified conversational designer, expert in enterprise voice AI across DACH region.",
     shortBio: "Europe's leading conversational AI and voice UX designer. Founder of Women in Voice Germany.",
-    photo: "/panelists/romina-pankoke.svg",
+    photo: "/panelists/romina-pankoke.jpg",
     color: "indigo",
   },
   {
@@ -24,7 +27,7 @@ const panelists = [
     company: "Tech Ecosystem Institute",
     bio: "Creator of VOICE Summit — the world's premier voice technology conference. 12+ years building the global voice AI community. Executive Director, Tech Ecosystem Institute.",
     shortBio: "Creator of VOICE Summit — the world's premier voice technology conference.",
-    photo: "/panelists/pete-erickson.svg",
+    photo: "/panelists/pete-erickson.jpg",
     color: "orange",
   },
   {
@@ -35,7 +38,7 @@ const panelists = [
     company: "Five-time Microsoft AI MVP",
     bio: "Led AI teams at Microsoft, Amazon Alexa, AWS, IBM, NPR, Accenture (Global AI Solutions Lead). Multi-award-winning technologist. Founder of WomenIn.AI.",
     shortBio: "Led AI teams at Microsoft, Amazon Alexa, AWS. Founder of WomenIn.AI.",
-    photo: "/panelists/noelle-russell.svg",
+    photo: "/panelists/noelle-russell.jpg",
     color: "lime",
   },
   {
@@ -83,7 +86,7 @@ export default function SectionPanel() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen flex flex-col items-center justify-center relative px-4 sm:px-6 py-16 sm:py-24"
+      className="min-h-screen flex flex-col items-center justify-center relative px-4 sm:px-6 py-20 sm:py-24 md:py-32"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -130,7 +133,7 @@ export default function SectionPanel() {
 
                 {/* Photo */}
                 <div className="flex justify-center mb-4">
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-2 ring-cream/10">
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden ring-2 ring-cream/20">
                     <Image
                       src={panelist.photo}
                       alt={panelist.name}
@@ -169,7 +172,7 @@ export default function SectionPanel() {
 
                 {/* Expand hint */}
                 <div className="mt-3 text-center">
-                  <span className="text-cream/30 text-xs">
+                  <span className="text-cream/50 text-xs">
                     {isExpanded ? "Click to collapse" : "Click for more"}
                   </span>
                 </div>

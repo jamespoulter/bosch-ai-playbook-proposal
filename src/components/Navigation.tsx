@@ -77,7 +77,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                       className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                         isActive
                           ? "text-orange"
-                          : "text-cream/60 hover:text-cream hover:bg-cream/5"
+                          : "text-cream/70 hover:text-cream hover:bg-cream/5"
                       }`}
                     >
                       {isActive && (
@@ -95,14 +95,14 @@ export default function Navigation({ activeSection }: NavigationProps) {
 
               {/* Prepared for Jabra */}
               <div className="hidden md:flex items-center gap-2 text-sm">
-                <span className="text-cream/40">Prepared for</span>
+                <span className="text-cream/60">Prepared for</span>
                 <span className="text-orange font-semibold">Jabra</span>
               </div>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-cream/60 hover:text-cream transition-colors"
+                className="lg:hidden p-2 text-cream/70 hover:text-cream transition-colors"
                 aria-label="Toggle menu"
               >
                 <svg
@@ -141,7 +141,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-40 lg:hidden"
+                className="fixed inset-0 z-40 bg-black/40 lg:hidden"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-hidden="true"
               />
@@ -164,7 +164,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                         className={`px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 ${
                           isActive
                             ? "text-orange bg-orange/10 border border-orange/30"
-                            : "text-cream/60 hover:text-cream hover:bg-cream/5"
+                            : "text-cream/70 hover:text-cream hover:bg-cream/5"
                         }`}
                       >
                         {section.label}
@@ -173,7 +173,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                   })}
                 </div>
                 <div className="mt-4 pt-4 border-t border-cream/10 flex items-center justify-center gap-2 text-sm">
-                  <span className="text-cream/40">Prepared for</span>
+                  <span className="text-cream/60">Prepared for</span>
                   <span className="text-orange font-semibold">Jabra</span>
                 </div>
               </div>

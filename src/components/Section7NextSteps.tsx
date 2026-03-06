@@ -43,7 +43,7 @@ export default function Section7NextSteps() {
           <span className="text-lime text-sm font-medium tracking-widest uppercase mb-4 block">
             Ready to Begin?
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-cream mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold text-cream mb-4">
             Next Steps
           </h2>
           <p className="text-xl text-cream/75 font-normal max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default function Section7NextSteps() {
             href="mailto:jp@threepoint.io?subject=Jabra%20Voice%20AI%20Research%20Programme"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-navy font-bold text-lg px-10 py-5 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/50 focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
+            className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-navy font-bold text-lg px-10 py-5 rounded-xl transition-all shadow-lg shadow-orange/25 hover:shadow-xl hover:shadow-orange/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/50"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -105,7 +105,7 @@ export default function Section7NextSteps() {
           </div>
 
           <div className="pt-8 border-t border-cream/10">
-            <div className="flex items-center justify-center gap-2 text-cream/40 text-sm">
+            <div className="flex items-center justify-center gap-2 text-cream/60 text-sm">
               <span>James Poulter</span>
               <span>|</span>
               <span className="text-orange">ThreePoint Labs</span>
