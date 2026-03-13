@@ -5,26 +5,26 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
-import Section1Welcome from "@/components/Section1Welcome";
-import Section2MarketMoment from "@/components/Section2MarketMoment";
-import Section3TheGap from "@/components/Section3TheGap";
-import Section4WhatDelivers from "@/components/Section4WhatDelivers";
-import Section5Programme from "@/components/Section5Programme";
-import SectionPanel from "@/components/SectionPanel";
-import Section6PricingTiers from "@/components/Section6PricingTiers";
-import SectionAboutThreePoint from "@/components/SectionAboutThreePoint";
-import Section7NextSteps from "@/components/Section7NextSteps";
+import SectionWelcome from "@/components/SectionWelcome";
+import SectionMoment from "@/components/SectionMoment";
+import SectionChallenge from "@/components/SectionChallenge";
+import SectionPlatform from "@/components/SectionPlatform";
+import SectionApproach from "@/components/SectionApproach";
+import SectionTeam from "@/components/SectionTeam";
+import SectionPricing from "@/components/SectionPricing";
+import SectionThreePoint from "@/components/SectionThreePoint";
+import SectionNextSteps from "@/components/SectionNextSteps";
 
 const sections = [
   { id: "welcome", label: "Welcome" },
-  { id: "market", label: "Market" },
-  { id: "gap", label: "The Gap" },
-  { id: "delivers", label: "Delivers" },
-  { id: "programme", label: "Programme" },
-  { id: "panel", label: "Panel" },
-  { id: "pricing", label: "Tiers" },
-  { id: "about", label: "ThreePoint" },
-  { id: "next", label: "Next Steps" },
+  { id: "moment", label: "Moment" },
+  { id: "challenge", label: "Challenge" },
+  { id: "platform", label: "Platform" },
+  { id: "approach", label: "Approach" },
+  { id: "team", label: "Team" },
+  { id: "pricing", label: "Pricing" },
+  { id: "threepoint", label: "ThreePoint" },
+  { id: "nextsteps", label: "Next Steps" },
 ];
 
 export default function ProposalPage() {
@@ -35,7 +35,7 @@ export default function ProposalPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("jabra-auth");
+    const auth = sessionStorage.getItem("bosch-auth");
     if (auth !== "true") {
       router.push("/");
     } else {
@@ -63,7 +63,6 @@ export default function ProposalPage() {
         }
       }
 
-      // Show back-to-top button after scrolling 500px
       setShowBackToTop(window.scrollY > 500);
     };
 
@@ -93,8 +92,7 @@ export default function ProposalPage() {
 
   return (
     <main className="relative bg-navy">
-      {/* Top Navigation */}
-      <Navigation activeSection={activeSection} />
+      <Navigation activeSection={activeSection} sections={sections} clientName="Bosch" />
 
       {/* Side Navigation dots */}
       <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
@@ -119,50 +117,15 @@ export default function ProposalPage() {
         ))}
       </nav>
 
-      {/* Section 1: Welcome */}
-      <div id="welcome">
-        <Section1Welcome />
-      </div>
-
-      {/* Section 2: The Market Moment */}
-      <div id="market">
-        <Section2MarketMoment />
-      </div>
-
-      {/* Section 3: The Gap */}
-      <div id="gap">
-        <Section3TheGap />
-      </div>
-
-      {/* Section 4: What This Delivers */}
-      <div id="delivers">
-        <Section4WhatDelivers />
-      </div>
-
-      {/* Section 5: The Programme */}
-      <div id="programme">
-        <Section5Programme />
-      </div>
-
-      {/* Section 6: The Panel */}
-      <div id="panel">
-        <SectionPanel />
-      </div>
-
-      {/* Section 7: Choose Your Level */}
-      <div id="pricing">
-        <Section6PricingTiers />
-      </div>
-
-      {/* Section 8: About ThreePoint */}
-      <div id="about">
-        <SectionAboutThreePoint />
-      </div>
-
-      {/* Section 9: Next Steps */}
-      <div id="next">
-        <Section7NextSteps />
-      </div>
+      <div id="welcome"><SectionWelcome /></div>
+      <div id="moment"><SectionMoment /></div>
+      <div id="challenge"><SectionChallenge /></div>
+      <div id="platform"><SectionPlatform /></div>
+      <div id="approach"><SectionApproach /></div>
+      <div id="team"><SectionTeam /></div>
+      <div id="pricing"><SectionPricing /></div>
+      <div id="threepoint"><SectionThreePoint /></div>
+      <div id="nextsteps"><SectionNextSteps /></div>
 
       {/* Footer */}
       <footer className="py-12 border-t border-cream/10">
@@ -177,14 +140,14 @@ export default function ProposalPage() {
                 className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity"
               />
               <span className="text-cream/30 text-sm">|</span>
-              <span className="text-cream/40 text-sm">Confidential proposal prepared for Jabra / GN Audio</span>
+              <span className="text-cream/40 text-sm">Confidential proposal prepared for Bosch</span>
             </div>
             <p className="text-cream/30 text-sm">&copy; {new Date().getFullYear()} ThreePoint Labs. All rights reserved.</p>
           </div>
         </div>
       </footer>
 
-      {/* Back to Top Button */}
+      {/* Back to Top */}
       <AnimatePresence>
         {showBackToTop && (
           <motion.button
@@ -192,7 +155,7 @@ export default function ProposalPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-orange hover:bg-orange/90 rounded-full flex items-center justify-center shadow-lg shadow-orange/25 hover:shadow-xl hover:shadow-orange/30 transition-all"
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-orange hover:bg-orange/90 rounded-full flex items-center justify-center shadow-lg shadow-orange/25 transition-all"
             aria-label="Back to top"
           >
             <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>

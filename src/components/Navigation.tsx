@@ -4,53 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-interface NavigationProps {
-  activeSection: string;
+interface Section {
+  id: string;
+  label: string;
 }
 
-const sections = [
-  { id: "welcome", label: "Welcome" },
-  { id: "market", label: "Market" },
-  { id: "gap", label: "The Gap" },
-  { id: "delivers", label: "Delivers" },
-  { id: "programme", label: "Programme" },
-  { id: "panel", label: "Panel" },
-  { id: "pricing", label: "Tiers" },
-  { id: "about", label: "ThreePoint" },
-  { id: "next", label: "Next Steps" },
-];
+interface NavigationProps {
+  activeSection: string;
+  sections: Section[];
+  clientName?: string;
+}
 
-export default function Navigation({ activeSection }: NavigationProps) {
+export default function Navigation({ activeSection, sections, clientName = "Bosch" }: NavigationProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showPdfToast, setShowPdfToast] = useState(false);
-  const [pdfLoading, setPdfLoading] = useState(false);
-
-  const handlePdfDownload = async () => {
-    if (pdfLoading) return;
-    setPdfLoading(true);
-    setShowPdfToast(true);
-
-    try {
-      const response = await fetch("/api/download-proposal");
-      if (!response.ok) throw new Error("Failed to generate PDF");
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Jabra-Voice-AI-Research-Programme-Proposal.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("PDF download error:", error);
-    } finally {
-      setPdfLoading(false);
-      setTimeout(() => setShowPdfToast(false), 2000);
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +30,6 @@ export default function Navigation({ activeSection }: NavigationProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when section changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [activeSection]);
@@ -73,7 +39,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 z-[60] bg-navy/50">
         <motion.div
-          className="h-full bg-gradient-to-r from-orange to-lime"
+          className="h-full bg-gradient-to-r from-orange to-gold"
           style={{ width: `${scrollProgress}%` }}
           transition={{ duration: 0.1 }}
         />
@@ -122,30 +88,10 @@ export default function Navigation({ activeSection }: NavigationProps) {
                 })}
               </div>
 
-              {/* PDF Download + Prepared for Jabra */}
-              <div className="hidden md:flex items-center gap-4">
-                <button
-                  onClick={handlePdfDownload}
-                  disabled={pdfLoading}
-                  className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm font-medium text-cream/70 hover:text-cream hover:bg-cream/5 rounded-lg transition-all disabled:opacity-50 disabled:cursor-wait"
-                  title="Download PDF"
-                >
-                  {pdfLoading ? (
-                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  )}
-                  <span>{pdfLoading ? "Generating..." : "PDF"}</span>
-                </button>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-cream/60">Prepared for</span>
-                  <span className="text-orange font-semibold">Jabra</span>
-                </div>
+              {/* Prepared for */}
+              <div className="hidden md:flex items-center gap-2 text-sm">
+                <span className="text-cream/60">Prepared for</span>
+                <span className="text-orange font-semibold">{clientName}</span>
               </div>
 
               {/* Mobile Menu Button */}
@@ -154,26 +100,11 @@ export default function Navigation({ activeSection }: NavigationProps) {
                 className="lg:hidden p-2 text-cream/70 hover:text-cream transition-colors"
                 aria-label="Toggle menu"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   )}
                 </svg>
               </button>
@@ -185,14 +116,12 @@ export default function Navigation({ activeSection }: NavigationProps) {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-40 bg-black/40 lg:hidden"
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-hidden="true"
               />
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -201,60 +130,36 @@ export default function Navigation({ activeSection }: NavigationProps) {
                 transition={{ duration: 0.2 }}
                 className="lg:hidden mx-4 mt-2 relative z-50"
               >
-              <div className="backdrop-blur-xl bg-navy/95 border border-cream/10 rounded-2xl p-4 shadow-2xl">
-                <div className="flex flex-col gap-1">
-                  {sections.map((section) => {
-                    const isActive = activeSection === section.id;
-                    return (
-                      <a
-                        key={section.id}
-                        href={`#${section.id}`}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 ${
-                          isActive
-                            ? "text-orange bg-orange/10 border border-orange/30"
-                            : "text-cream/70 hover:text-cream hover:bg-cream/5"
-                        }`}
-                      >
-                        {section.label}
-                      </a>
-                    );
-                  })}
+                <div className="backdrop-blur-xl bg-navy/95 border border-cream/10 rounded-2xl p-4 shadow-2xl">
+                  <div className="flex flex-col gap-1">
+                    {sections.map((section) => {
+                      const isActive = activeSection === section.id;
+                      return (
+                        <a
+                          key={section.id}
+                          href={`#${section.id}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 ${
+                            isActive
+                              ? "text-orange bg-orange/10 border border-orange/30"
+                              : "text-cream/70 hover:text-cream hover:bg-cream/5"
+                          }`}
+                        >
+                          {section.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-cream/10 flex items-center justify-center gap-2 text-sm">
+                    <span className="text-cream/60">Prepared for</span>
+                    <span className="text-orange font-semibold">{clientName}</span>
+                  </div>
                 </div>
-                <div className="mt-4 pt-4 border-t border-cream/10 flex items-center justify-center gap-2 text-sm">
-                  <span className="text-cream/60">Prepared for</span>
-                  <span className="text-orange font-semibold">Jabra</span>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
             </>
           )}
         </AnimatePresence>
       </nav>
-
-      {/* PDF Toast Notification */}
-      <AnimatePresence>
-        {showPdfToast && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] bg-navy-light border border-cream/20 rounded-xl px-6 py-4 shadow-2xl flex items-center gap-3"
-          >
-            {pdfLoading ? (
-              <svg className="w-5 h-5 text-orange animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-            <span className="text-cream text-sm">{pdfLoading ? "Generating PDF..." : "PDF downloaded!"}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
